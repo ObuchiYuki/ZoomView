@@ -5,20 +5,13 @@ import PackageDescription
 
 let package = Package(
     name: "ZoomView",
+    platforms: [
+        .iOS(.v14)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "ZoomView",
-            targets: ["ZoomView"]),
+        .library(name: "ZoomView", targets: ["ZoomView"]),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "ZoomView"),
-        .testTarget(
-            name: "ZoomViewTests",
-            dependencies: ["ZoomView"]
-        ),
+        .target(name: "ZoomView"),
     ]
 )
