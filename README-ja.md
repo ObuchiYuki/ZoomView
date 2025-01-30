@@ -67,15 +67,16 @@ struct ZoomContentWithNavigationView: View {
     
     var body: some View {
         NavigationStack {
-            ZoomView(onTap: {
-                withAnimation(.easeInOut(duration: 0.23)) {
-                    self.isFullScreen.toggle()
-                }
-            }) {
+            ZoomView {
                 Image("mountain")
                     .resizable()
                     .scaledToFit()
             }
+            .onTapZoomView {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    self.isFullScreen.toggle()
+                }
+            }            
             .background(self.isFullScreen ? Color.black : Color.white)
             .navigationBarHidden(self.isFullScreen)
             .toolbarBackground(.visible, for: .navigationBar)
