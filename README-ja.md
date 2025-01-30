@@ -1,5 +1,7 @@
 # ZoomView
 
+en: [English](README.md) | ja: [日本語](README-ja.md)
+
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange) ![Platforms](https://img.shields.io/badge/Platforms-iOS-lightgrey) ![License](https://img.shields.io/badge/License-MIT-blue)
 
 `ZoomView` は、SwiftUI でコンテンツのズームイン・ズームアウトを可能にするコンポーネントです。iOS の写真アプリと同じピンチやダブルタップによるズーム挙動を再現し、`ScrollView` を内部で使用することで、SwiftUI の safe area にも対応しています。
