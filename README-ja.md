@@ -24,14 +24,14 @@ en: [English](README.md) | ja: [日本語](README-ja.md)
 ## インストール (Swift Package Manager)
 
 1. Xcode のメニューから **File** > **Add Packages...** を選択
-2. 次のリポジトリ URL を入力 (例): `https://github.com/yourusername/ZoomView.git`
+2. 次のリポジトリ URL を入力: `https://github.com/ObuchiYuki/ZoomView.git`
 3. **ZoomView** パッケージを選択し、プロジェクトに追加する
 
 または、`Package.swift` に以下を追加してください:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/ZoomView.git", from: "1.0.0")
+    .package(url: "https://github.com/ObuchiYuki/ZoomView.git", from: "1.0.0")
 ]
 ```
 
