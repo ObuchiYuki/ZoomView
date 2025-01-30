@@ -8,16 +8,30 @@
 import SwiftUI
 import UIKit
 
+/// A container view that supports pinch-to-zoom and double-tap-to-zoom gestures.
+/// Use this view to wrap any SwiftUI content that should be zoomable.
 public struct ZoomView<Content: View>: View {
-    let minScale: CGFloat
-    let maxScale: CGFloat
+    /// The minimum allowed zoom scale.
+    public let minScale: CGFloat
     
-    var enabled: Bool = true
+    /// The maximum allowed zoom scale.
+    public let maxScale: CGFloat
     
-    var onTap: (() -> Void)? = nil
+    /// A Boolean value indicating whether zoom gestures are enabled.
+    public var enabled: Bool = true
     
-    let content: () -> Content
+    /// An optional action triggered by a single tap gesture.
+    public var onTap: (() -> Void)? = nil
     
+    /// The content view to be displayed and zoomed.
+    public let content: () -> Content
+    
+    /// Creates a new `ZoomView` with optional minimum and maximum zoom scales.
+    ///
+    /// - Parameters:
+    ///   - minScale: The minimum zoom scale. Defaults to `1.0`.
+    ///   - maxScale: The maximum zoom scale. Defaults to `4.0`.
+    ///   - content: A view builder that constructs the content of the zoomable view.
     public init(
         minScale: CGFloat = 1.0,
         maxScale: CGFloat = 4.0,
@@ -29,24 +43,41 @@ public struct ZoomView<Content: View>: View {
     }
     
     public var body: some View {
-        ZoomViewInternal(minScale: self.minScale, maxScale: self.maxScale, enabled: self.enabled, onTap: self.onTap, content: self.content)
-            .background(Color.black.opacity(0.0000000001)) // for ScrollView hidden API
-            .ignoresSafeArea()
+        ZoomViewInternal(
+            minScale: self.minScale,
+            maxScale: self.maxScale,
+            enabled: self.enabled,
+            onTap: self.onTap,
+            content: self.content
+        )
+        .background(Color.black.opacity(0.0000000001)) // For ScrollView hidden API
+        .ignoresSafeArea()
     }
-    
+}
+
+extension ZoomView {
+    /// Sets the enabled state of the zoom functionality.
+    ///
+    /// - Parameter enabled: A Boolean value that indicates whether
+    ///   pinch-to-zoom and double-tap zoom interactions are allowed.
+    /// - Returns: A `ZoomView` instance configured with the specified enabled state.
     public func zoomViewIsEnabled(_ enabled: Bool) -> Self {
         var copy = self
         copy.enabled = enabled
         return copy
     }
     
+    /// Registers a closure to be called when the `ZoomView` is single-tapped.
+    ///
+    /// - Parameter action: A closure to execute upon a single tap gesture.
+    ///   Pass `nil` to remove any existing tap action.
+    /// - Returns: A `ZoomView` instance configured with the specified tap action.
     public func onTapZoomView(_ action: (() -> Void)?) -> Self {
         var copy = self
         copy.onTap = action
         return copy
     }
 }
-
 struct ZoomViewInternal<Content: View>: UIViewControllerRepresentable {
     let minScale: CGFloat
     let maxScale: CGFloat
