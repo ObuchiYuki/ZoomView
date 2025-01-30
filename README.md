@@ -1,16 +1,18 @@
 # ZoomView
 
+en: [English](README.md) | ja: [日本語](README_ja.md)
+
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange) ![Platforms](https://img.shields.io/badge/Platforms-iOS-lightgrey) ![License](https://img.shields.io/badge/License-MIT-blue)
 
 `ZoomView` is a SwiftUI component that allows users to zoom in and out of content, emulating the same pinch and double-tap zoom behavior as the iOS Photos app. It also respects SwiftUI’s safe area by utilizing a `ScrollView` internally.
 
 ## Features
 - **Same behavior as iOS Photos app**
-  Pinch to zoom, double-tap to quickly zoom in/out, and auto-centers the content.
+  - Pinch to zoom, double-tap to quickly zoom in/out, and auto-centers the content.
 - **Safe area aware**
-  Automatically accounts for safe area insets by using a `UIScrollView` under the hood.
+  - Automatically accounts for safe area insets by using a `UIScrollView` under the hood.
 - **Smart zoom via double tap**
-  Double-tapping on the content smoothly zooms in (or out) around the tapped point.
+  - Double-tapping on the content smoothly zooms in (or out) around the tapped point.
 
 ## Requirements
 - iOS 14.0+
