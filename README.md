@@ -1,6 +1,6 @@
 # ZoomView
 
-en: [English](README.md) | ja: [日本語](README_ja.md)
+en: [English](README.md) | ja: [日本語](README-ja.md)
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange) ![Platforms](https://img.shields.io/badge/Platforms-iOS-lightgrey) ![License](https://img.shields.io/badge/License-MIT-blue)
 
