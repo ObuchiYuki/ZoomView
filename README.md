@@ -22,13 +22,13 @@ en: [English](README.md) | ja: [日本語](README-ja.md)
 
 ## Installation (Swift Package Manager)
 1. In Xcode, select **File** > **Add Packages...**
-2. Enter your repository URL, for example: `https://github.com/yourusername/ZoomView.git`
+2. Enter your repository URL, `https://github.com/ObuchiYuki/ZoomView.git`
 3. Select the **ZoomView** package and add it to your project.
 
 Alternatively, add the following to your `Package.swift`:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/ZoomView.git", from: "1.0.0")
+    .package(url: "https://github.com/ObuchiYuki/ZoomView.git", from: "1.0.0")
 ]
 ```
 
