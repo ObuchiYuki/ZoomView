@@ -8,30 +8,19 @@
 import SwiftUI
 import UIKit
 
-/// A container view that supports pinch-to-zoom and double-tap-to-zoom gestures.
-/// Use this view to wrap any SwiftUI content that should be zoomable.
 public struct ZoomView<Content: View>: View {
-    /// The minimum allowed zoom scale.
     public let minScale: CGFloat
     
-    /// The maximum allowed zoom scale.
     public let maxScale: CGFloat
     
-    /// A Boolean value indicating whether zoom gestures are enabled.
     public var enabled: Bool = true
     
-    /// An optional action triggered by a single tap gesture.
     public var onTap: (() -> Void)? = nil
     
-    /// The content view to be displayed and zoomed.
+    public var onZoom: ((CGFloat) -> Void)? = nil
+    
     public let content: () -> Content
     
-    /// Creates a new `ZoomView` with optional minimum and maximum zoom scales.
-    ///
-    /// - Parameters:
-    ///   - minScale: The minimum zoom scale. Defaults to `1.0`.
-    ///   - maxScale: The maximum zoom scale. Defaults to `4.0`.
-    ///   - content: A view builder that constructs the content of the zoomable view.
     public init(
         minScale: CGFloat = 1.0,
         maxScale: CGFloat = 4.0,
@@ -48,36 +37,34 @@ public struct ZoomView<Content: View>: View {
             maxScale: self.maxScale,
             enabled: self.enabled,
             onTap: self.onTap,
+            onZoom: self.onZoom,
             content: self.content
         )
-        .background(Color.black.opacity(0.0000000001)) // For ScrollView hidden API
-        .ignoresSafeArea()
+//        .background(Color.black.opacity(0.0000000001)) // For ScrollView hidden API
+//        .ignoresSafeArea()
     }
 }
 
 extension ZoomView {
-    /// Sets the enabled state of the zoom functionality.
-    ///
-    /// - Parameter enabled: A Boolean value that indicates whether
-    ///   pinch-to-zoom and double-tap zoom interactions are allowed.
-    /// - Returns: A `ZoomView` instance configured with the specified enabled state.
     public func zoomViewIsEnabled(_ enabled: Bool) -> Self {
         var copy = self
         copy.enabled = enabled
         return copy
     }
     
-    /// Registers a closure to be called when the `ZoomView` is single-tapped.
-    ///
-    /// - Parameter action: A closure to execute upon a single tap gesture.
-    ///   Pass `nil` to remove any existing tap action.
-    /// - Returns: A `ZoomView` instance configured with the specified tap action.
     public func onTapZoomView(_ action: (() -> Void)?) -> Self {
         var copy = self
         copy.onTap = action
         return copy
     }
+    
+    public func onZoom(_ action: ((CGFloat) -> Void)?) -> Self {
+        var copy = self
+        copy.onZoom = action
+        return copy
+    }
 }
+
 struct ZoomViewInternal<Content: View>: UIViewControllerRepresentable {
     let minScale: CGFloat
     let maxScale: CGFloat
@@ -86,6 +73,8 @@ struct ZoomViewInternal<Content: View>: UIViewControllerRepresentable {
     
     let onTap: (() -> Void)?
     
+    let onZoom: ((CGFloat) -> Void)?
+    
     let content: Content
     
     init(
@@ -93,19 +82,24 @@ struct ZoomViewInternal<Content: View>: UIViewControllerRepresentable {
         maxScale: CGFloat,
         enabled: Bool,
         onTap: (() -> Void)? = nil,
+        onZoom: ((CGFloat) -> Void)? = nil,
         @ViewBuilder content: () -> Content
     ) {
         self.minScale = minScale
         self.maxScale = maxScale
         self.enabled = enabled
         self.onTap = onTap
+        self.onZoom = onZoom
         self.content = content()
+        
+        print(self.onZoom, self.onTap)
     }
     
     func makeUIViewController(context: Context) -> ZoomViewController<Content> {
         let uiViewController = ZoomViewController(minScale: self.minScale, maxScale: self.maxScale, rootView: self.content)
         uiViewController.enabled = self.enabled
         uiViewController.onTap = self.onTap
+        uiViewController.onZoom = self.onZoom
         return uiViewController
     }
     
@@ -114,6 +108,7 @@ struct ZoomViewInternal<Content: View>: UIViewControllerRepresentable {
         uiViewController.maxScale = self.maxScale
         uiViewController.enabled = self.enabled
         uiViewController.onTap = self.onTap
+        uiViewController.onZoom = self.onZoom
         uiViewController.content = self.content
     }
 }
@@ -134,6 +129,8 @@ final class ZoomViewController<Content: View>: UIViewController, UIScrollViewDel
             self.singleTapGesture.isEnabled = self.onTap != nil
         }
     }
+    
+    var onZoom: ((CGFloat) -> Void)?
     
     var enabled: Bool {
         get { self.scrollView.isUserInteractionEnabled }
@@ -247,6 +244,8 @@ final class ZoomViewController<Content: View>: UIViewController, UIScrollViewDel
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.updateScrollInset()
+        print(self.onZoom)
+        self.onZoom?(scrollView.zoomScale)
     }
     
     private func updateScrollInset() {
