@@ -91,8 +91,6 @@ struct ZoomViewInternal<Content: View>: UIViewControllerRepresentable {
         self.onTap = onTap
         self.onZoom = onZoom
         self.content = content()
-        
-        print(self.onZoom, self.onTap)
     }
     
     func makeUIViewController(context: Context) -> ZoomViewController<Content> {
@@ -244,7 +242,6 @@ final class ZoomViewController<Content: View>: UIViewController, UIScrollViewDel
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.updateScrollInset()
-        print(self.onZoom)
         self.onZoom?(scrollView.zoomScale)
     }
     
