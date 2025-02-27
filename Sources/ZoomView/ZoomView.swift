@@ -40,8 +40,6 @@ public struct ZoomView<Content: View>: View {
             onZoom: self.onZoom,
             content: self.content
         )
-//        .background(Color.black.opacity(0.0000000001)) // For ScrollView hidden API
-//        .ignoresSafeArea()
     }
 }
 
@@ -177,6 +175,7 @@ final class ZoomViewController<Content: View>: UIViewController, UIScrollViewDel
         self.scrollView.bouncesZoom = true
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.showsHorizontalScrollIndicator = false
+        self.scrollView.layer.minificationFilter = .trilinear
                 
         self.scrollView.addGestureRecognizer(self.singleTapGesture)
         self.scrollView.addGestureRecognizer(self.doubleTapGesture)
