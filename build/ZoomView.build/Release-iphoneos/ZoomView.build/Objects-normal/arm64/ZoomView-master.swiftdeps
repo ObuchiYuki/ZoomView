@@ -1,0 +1,6 @@
+version: "Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)"
+options: "93edfa9c7911afb56e0b66d3f1f184ebc5a1bf17c05bbab6ea755f7051a65e48"
+build_start_time: [1743399079, 806109000]
+build_end_time: [1743399081, 771272000]
+inputs:
+  "/Users/yuki/Developer/SwiftPM/ZoomView/Sources/ZoomView/ZoomView.swift": [1740662916, 134269953]

@@ -1,0 +1,15 @@
+{
+  "" : {
+    "const-values" : "/Users/yuki/Developer/SwiftPM/ZoomView/build/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView-master.swiftconstvalues",
+    "dependencies" : "/Users/yuki/Developer/SwiftPM/ZoomView/build/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView-master.d",
+    "diagnostics" : "/Users/yuki/Developer/SwiftPM/ZoomView/build/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView-master.dia",
+    "emit-module-dependencies" : "/Users/yuki/Developer/SwiftPM/ZoomView/build/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/yuki/Developer/SwiftPM/ZoomView/build/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView-master-emit-module.dia",
+    "swift-dependencies" : "/Users/yuki/Developer/SwiftPM/ZoomView/build/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView-master.swiftdeps"
+  },
+  "/Users/yuki/Developer/SwiftPM/ZoomView/Sources/ZoomView/ZoomView.swift" : {
+    "index-unit-output-path" : "/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView.o",
+    "llvm-bc" : "/Users/yuki/Developer/SwiftPM/ZoomView/build/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView.bc",
+    "object" : "/Users/yuki/Developer/SwiftPM/ZoomView/build/ZoomView.build/Release-iphoneos/ZoomView.build/Objects-normal/arm64/ZoomView.o"
+  }
+}
